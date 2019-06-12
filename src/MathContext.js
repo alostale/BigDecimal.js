@@ -475,26 +475,26 @@
   var setform = this.DEFAULT_FORM;
   var setlostdigits = this.DEFAULT_LOSTDIGITS;
   var setroundingmode = this.DEFAULT_ROUNDINGMODE;
-  if (MathContext.arguments.length == 4)
+  if (arguments.length == 4)
    {
-    setform = MathContext.arguments[1];
-    setlostdigits = MathContext.arguments[2];
-    setroundingmode = MathContext.arguments[3];
+    setform = arguments[1];
+    setlostdigits = arguments[2];
+    setroundingmode = arguments[3];
    }
-  else if (MathContext.arguments.length == 3)
+  else if (arguments.length == 3)
    {
-    setform = MathContext.arguments[1];
-    setlostdigits = MathContext.arguments[2];
+    setform = arguments[1];
+    setlostdigits = arguments[2];
    }
-  else if (MathContext.arguments.length == 2)
+  else if (arguments.length == 2)
    {
-    setform = MathContext.arguments[1];
+    setform = arguments[1];
    }
-  else if (MathContext.arguments.length != 1)
+  else if (arguments.length != 1)
    {
-    throw "MathContext(): " + MathContext.arguments.length + " arguments given; expected 1 to 4"
+    throw "MathContext(): " + arguments.length + " arguments given; expected 1 to 4"
    }
-  var setdigits = MathContext.arguments[0];
+  var setdigits = arguments[0];
 
 
   // set values, after checking

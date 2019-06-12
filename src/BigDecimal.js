@@ -678,22 +678,22 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
   this.exp = 0;
 
   //-- overloaded ctor
-  if (BigDecimal.arguments.length == 0)
+  if (arguments.length == 0)
    return;
   var inchars;
   var offset;
   var length;
-  if (BigDecimal.arguments.length == 1)
+  if (arguments.length == 1)
    {
-    inchars = BigDecimal.arguments[0];
+    inchars = arguments[0];
     offset = 0;
     length = inchars.length;
    }
   else
    {
-    inchars = BigDecimal.arguments[0];
-    offset = BigDecimal.arguments[1];
-    length = BigDecimal.arguments[2];
+    inchars = arguments[0];
+    offset = arguments[1];
+    length = arguments[2];
    }
   if (typeof inchars == "string")
    {
@@ -1219,17 +1219,17 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal abs(com.ibm.icu.math.MathContext set){
  function abs() {
   var set;
-  if (abs.arguments.length == 1)
+  if (arguments.length == 1)
    {
-    set = abs.arguments[0];
+    set = arguments[0];
    }
-  else if (abs.arguments.length == 0)
+  else if (arguments.length == 0)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "abs(): " + abs.arguments.length + " arguments given; expected 0 or 1"
+    throw "abs(): " + arguments.length + " arguments given; expected 0 or 1"
    }
   if (this.ind==this.isneg)
    return this.negate(set);
@@ -1277,19 +1277,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal add(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function add() {
   var set;
-  if (add.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = add.arguments[1];
+    set = arguments[1];
    }
-  else if (add.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "add(): " + add.arguments.length + " arguments given; expected 1 or 2"
+    throw "add(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = add.arguments[0];
+  var rhs = arguments[0];
   //--com.ibm.icu.math.BigDecimal lhs;
   var lhs;
   //--int reqdig;
@@ -1579,19 +1579,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //public int compareTo(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function compareTo() {
   var set;
-  if (compareTo.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = compareTo.arguments[1];
+    set = arguments[1];
    }
-  else if (compareTo.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "compareTo(): " + compareTo.arguments.length + " arguments given; expected 1 or 2"
+    throw "compareTo(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = compareTo.arguments[0];
+  var rhs = arguments[0];
   //--int thislength=0;
   var thislength=0;
   //--int i=0;
@@ -1763,33 +1763,33 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  function divide() {
   var set;
   var scale = -1;
-  if (divide.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    if (typeof divide.arguments[1] == 'number')
+    if (typeof arguments[1] == 'number')
      {
-      set=new MathContext(0,MathContext.prototype.PLAIN,false,divide.arguments[1]); // [checks round, too]
+      set=new MathContext(0,MathContext.prototype.PLAIN,false,arguments[1]); // [checks round, too]
      }
     else
      {
-      set = divide.arguments[1];
+      set = arguments[1];
      }
    }
-  else if (divide.arguments.length == 3)
+  else if (arguments.length == 3)
    {
-    scale = divide.arguments[1];
+    scale = arguments[1];
     if (scale<0)
      throw "divide(): Negative scale: "+scale;
-    set=new MathContext(0,MathContext.prototype.PLAIN,false,divide.arguments[2]); // [checks round]
+    set=new MathContext(0,MathContext.prototype.PLAIN,false,arguments[2]); // [checks round]
    }
-  else if (divide.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "divide(): " + divide.arguments.length + " arguments given; expected between 1 and 3"
+    throw "divide(): " + arguments.length + " arguments given; expected between 1 and 3"
    }
-  var rhs = divide.arguments[0];
+  var rhs = arguments[0];
   return this.dodivide('D',rhs,set,scale);
   }
 
@@ -1837,19 +1837,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal divideInteger(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function divideInteger() {
   var set;
-  if (divideInteger.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = divideInteger.arguments[1];
+    set = arguments[1];
    }
-  else if (divideInteger.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "divideInteger(): " + divideInteger.arguments.length + " arguments given; expected 1 or 2"
+    throw "divideInteger(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = divideInteger.arguments[0];
+  var rhs = arguments[0];
   // scale 0 to drop .000 when plain
   return this.dodivide('I',rhs,set,0);
   }
@@ -1899,19 +1899,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal max(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function max() {
   var set;
-  if (max.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = max.arguments[1];
+    set = arguments[1];
    }
-  else if (max.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "max(): " + max.arguments.length + " arguments given; expected 1 or 2"
+    throw "max(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = max.arguments[0];
+  var rhs = arguments[0];
   if ((this.compareTo(rhs,set))>=0)
    return this.plus(set);
   else
@@ -1963,19 +1963,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal min(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function min() {
   var set;
-  if (min.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = min.arguments[1];
+    set = arguments[1];
    }
-  else if (min.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "min(): " + min.arguments.length + " arguments given; expected 1 or 2"
+    throw "min(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = min.arguments[0];
+  var rhs = arguments[0];
   if ((this.compareTo(rhs,set))<=0)
    return this.plus(set);
   else
@@ -2024,19 +2024,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal multiply(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function multiply() {
   var set;
-  if (multiply.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = multiply.arguments[1];
+    set = arguments[1];
    }
-  else if (multiply.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "multiply(): " + multiply.arguments.length + " arguments given; expected 1 or 2"
+    throw "multiply(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = multiply.arguments[0];
+  var rhs = arguments[0];
   //--com.ibm.icu.math.BigDecimal lhs;
   var lhs;
   //--int padding;
@@ -2175,17 +2175,17 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //public com.ibm.icu.math.BigDecimal negate(com.ibm.icu.math.MathContext set){
  function negate() {
   var set;
-  if (negate.arguments.length == 1)
+  if (arguments.length == 1)
    {
-    set = negate.arguments[0];
+    set = arguments[0];
    }
-  else if (negate.arguments.length == 0)
+  else if (arguments.length == 0)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "negate(): " + negate.arguments.length + " arguments given; expected 0 or 1"
+    throw "negate(): " + arguments.length + " arguments given; expected 0 or 1"
    }
   //--com.ibm.icu.math.BigDecimal res;
   var res;
@@ -2240,17 +2240,17 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //public com.ibm.icu.math.BigDecimal plus(com.ibm.icu.math.MathContext set){
  function plus() {
   var set;
-  if (plus.arguments.length == 1)
+  if (arguments.length == 1)
    {
-    set = plus.arguments[0];
+    set = arguments[0];
    }
-  else if (plus.arguments.length == 0)
+  else if (arguments.length == 0)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "plus(): " + plus.arguments.length + " arguments given; expected 0 or 1"
+    throw "plus(): " + arguments.length + " arguments given; expected 0 or 1"
    }
   // This clones and forces the result to the new settings
   // May return same object
@@ -2331,19 +2331,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal pow(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function pow() {
   var set;
-  if (pow.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = pow.arguments[1];
+    set = arguments[1];
    }
-  else if (pow.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "pow(): " + pow.arguments.length + " arguments given; expected 1 or 2"
+    throw "pow(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = pow.arguments[0];
+  var rhs = arguments[0];
   //--int n;
   var n;
   //--com.ibm.icu.math.BigDecimal lhs;
@@ -2469,19 +2469,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal remainder(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function remainder() {
   var set;
-  if (remainder.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = remainder.arguments[1];
+    set = arguments[1];
    }
-  else if (remainder.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "remainder(): " + remainder.arguments.length + " arguments given; expected 1 or 2"
+    throw "remainder(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = remainder.arguments[0];
+  var rhs = arguments[0];
   return this.dodivide('R',rhs,set,-1);
   }
 
@@ -2526,19 +2526,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal subtract(com.ibm.icu.math.BigDecimal rhs,com.ibm.icu.math.MathContext set){
  function subtract() {
   var set;
-  if (subtract.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    set = subtract.arguments[1];
+    set = arguments[1];
    }
-  else if (subtract.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     set = this.plainMC;
    }
   else
    {
-    throw "subtract(): " + subtract.arguments.length + " arguments given; expected 1 or 2"
+    throw "subtract(): " + arguments.length + " arguments given; expected 1 or 2"
    }
-  var rhs = subtract.arguments[0];
+  var rhs = arguments[0];
   //--com.ibm.icu.math.BigDecimal newrhs;
   var newrhs;
   if (set.lostDigits)
@@ -2898,14 +2898,14 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
   var exdigits;
   var exformint;
   var exround;
-  if (format.arguments.length == 6)
+  if (arguments.length == 6)
    {
-    explaces = format.arguments[2];
-    exdigits = format.arguments[3];
-    exformint = format.arguments[4];
-    exround = format.arguments[5];
+    explaces = arguments[2];
+    exdigits = arguments[3];
+    exformint = arguments[4];
+    exround = arguments[5];
    }
-  else if (format.arguments.length == 2)
+  else if (arguments.length == 2)
    {
     explaces = -1;
     exdigits = -1;
@@ -2914,10 +2914,10 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
    }
   else
    {
-    throw "format(): " + format.arguments.length + " arguments given; expected 2 or 6"
+    throw "format(): " + arguments.length + " arguments given; expected 2 or 6"
    }
-  var before = format.arguments[0];
-  var after = format.arguments[1];
+  var before = arguments[0];
+  var after = arguments[1];
   //--com.ibm.icu.math.BigDecimal num;
   var num;
   //--int mag=0;
@@ -3513,19 +3513,19 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  //--public com.ibm.icu.math.BigDecimal setScale(int scale,int round){
  function setScale() {
   var round;
-  if (setScale.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    round = setScale.arguments[1];
+    round = arguments[1];
    }
-  else if (setScale.arguments.length == 1)
+  else if (arguments.length == 1)
    {
     round = this.ROUND_UNNECESSARY;
    }
   else
    {
-    throw "setScale(): " + setScale.arguments.length + " given; expected 1 or 2"
+    throw "setScale(): " + arguments.length + " given; expected 1 or 2"
    }
-  var scale = setScale.arguments[0];
+  var scale = arguments[0];
   //--int ourscale;
   var ourscale;
   //--com.ibm.icu.math.BigDecimal res;
@@ -4687,20 +4687,20 @@ BigDecimal.prototype.ONE = new BigDecimal("1");
  function round() {
   var len;
   var mode;
-  if (round.arguments.length == 2)
+  if (arguments.length == 2)
    {
-    len = round.arguments[0];
-    mode = round.arguments[1];
+    len = arguments[0];
+    mode = arguments[1];
    }
-  else if (round.arguments.length == 1)
+  else if (arguments.length == 1)
    {
-    var set = round.arguments[0];
+    var set = arguments[0];
     len = set.digits;
     mode = set.roundingMode;
    }
   else
    {
-    throw "round(): " + round.arguments.length + " arguments given; expected 1 or 2";
+    throw "round(): " + arguments.length + " arguments given; expected 1 or 2";
    }
   //int adjust;
   var adjust;
